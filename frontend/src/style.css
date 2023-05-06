@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-dark-bg text-white
+    }
+    input {
+        color: black;
+    }
+}
+@layer components {
+
+    .btn {
+        @apply block rounded px-2 py-1 max-w-[200px] w-max
+    }
+
+    .btn-outline-effect {
+        @apply  border-white relative transition-all bg-white text-white
+    }
+    .btn-outline-effect>span{
+        @apply  relative z-[1]
+    }
+
+    .btn-outline-effect>i {
+       @apply absolute inset-0 block
+    }
+    .btn-outline-effect>i::before {
+        @apply content-[''] absolute top-0 left-[80%] w-2 h-1 bg-dark-bg -translate-x-1/2 skew-x-[325deg] transition-all duration-500
+     }
+
+     .btn-outline-effect:hover > i::before {
+        @apply w-3 left-1/4
+     }
+     .btn-outline-effect>i::after {
+        @apply content-[''] absolute bottom-0 right-[80%] w-2 h-1 bg-dark-bg translate-x-1/2 skew-x-[325deg] transition-all duration-500
+     }
+
+     .btn-outline-effect:hover > i::after {
+        @apply w-3 right-1/4
+     }
+
+    
+    .btn-outline-effect:hover{
+        @apply bg-primary tracking-widest shadow-btn    
+    }
+
+    .btn-outline-effect::after{
+        @apply content-[''] absolute inset-[2px] bg-dark-bg
+    }
+
+    .hover-line {
+        position: relative;
+    }
+    .hover-line::after {
+        @apply content-[''] absolute w-0 h-1 rounded-sm bottom-0 left-1/2 -translate-x-1/2 bg-primary
+
+    }
+    .hover-line:hover::after {
+        @apply bg-primary w-[60%] transition-all ease-in delay-200
+
+    }
+    .scrollEffect {
+        @apply px-20 py-6 bg-dark-bg fixed z-[9999] top-0 left-0 right-0 border-b border-[#ccc]
+
+    }
+
+    .btn-fill-effect {
+        border: 1px solid #ccc;
+        position: relative;
+        z-index: 1;
+
+    }
+    .btn-fill-effect:hover{
+        color: #000;
+    }
+    .btn-fill-effect::before {
+        @apply content-[''] absolute top-0 left-0 w-0 h-full bg-primary transition-all duration-500 z-[-10]
+    }
+    .btn-fill-effect:hover::before {
+        width: 100%;
+        transition: all .5s ease;
+    }
+
+    
+}
