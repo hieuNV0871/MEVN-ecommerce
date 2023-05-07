@@ -35,6 +35,9 @@
             class="w-[50px] h-[50px] object-cover rounded"
           />
         </div>
+        <div>
+          {{ item.name }}
+        </div>
         <div
           class="relative cursor-pointer select-none flex justify-center items-center gap-x-2"
         >

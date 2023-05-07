@@ -296,6 +296,32 @@ const billController = {
       res.status(500).json({ error: error.message });
     }
   },
+
+  cancellationBill: async (req, res) => {
+    try {
+      const user = await User.findById(req.user.id)
+      const {status} = req.body
+      const _id = req.params.id
+      if(status !== 0 ) return res.status(403).json({error: "Vui lòng liên hệ người bán"})
+      if(!user) return res.status(400).json({error: "Người dùng không tồn tại"})
+      const bill = await Bill.findByIdAndUpdate(
+        { _id },
+        {
+         status: 3
+        }
+      );
+      if(bill){
+        bill.order.map(item=>{
+          sold(item.productId, item.color, item.size, -item.quantity)
+        })
+      }
+      return res
+        .status(200)
+        .json({ success: "Huy don hang thanh cong", data: bill });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 };
 const sold = async (productId, colorName, sizeName, quantity) => {
   const product = await Product.findById(productId);

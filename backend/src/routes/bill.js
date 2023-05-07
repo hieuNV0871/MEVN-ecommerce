@@ -11,6 +11,8 @@ router.get("/get_personal_bill", auth, billController.getPersonalBill)
 router.get("/get_all_bill_deleted", auth, authAdmin, billController.getAllBillDeleted)
 router.patch("/update_personal_bill/:id", auth, billController.updatePersonalBill)
 router.patch("/update/:id", auth, authAdmin, billController.updateBill)
+router.patch("/cancel/:id", auth, billController.cancellationBill)
+
 //check middleware payment neu k phai admin
 // router.patch("/update_bill_status/:id", auth, , billController.updateStatusBill) 
 router.delete("/delete/:id", auth, billController.deleteOneBill)

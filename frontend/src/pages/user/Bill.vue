@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div v-if="item.status === 0 || item.status === 1">
-                            <button @click="handleCancelBill(item.status)" class="btn btn border hover:border-primary ">Huy don hang</button>
+                            <button @click="handleCancelBill(item)" class="btn btn border hover:border-primary ">Huy don hang</button>
                     </div>
                 </div>
             </div>
@@ -85,9 +85,11 @@ const bills = ref([])
     }
     getBills()
 
-    const handleCancelBill = (status)=>{
-        if(status === 0) {
+    const handleCancelBill = async (bill)=>{
+        if(bill.status === 0) {
+            await request.patch(`bill/cancel/${bill._id}`, {status: bill.status})
             alert("đã hủy ( tượng trưng - chưa làm :V)")
+            await getBills()
         }else {
             alert("vui lòng liên hệ người bán để trao đổi")
         }

@@ -7,7 +7,7 @@
 
     <router-link
     v-for="(item, index) in datas" :key="index"
-      :to="item.slug"
+      :to="`/${item.slug}`"
       className="flex items-center py-[6px] px-4 cursor-pointer hover:bg-[#16182308]"
     >
       <img
